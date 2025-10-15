@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Kisan | Smart Agriculture</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; scroll-behavior:smooth; }
+    body { background:#f4f9f4; color:#1a3d1a; }
+  
+    
+
+    /* HEADER */
+    header { width:100%; background: linear-gradient(90deg,#a8e6a3,#81c784); position: fixed; top:0; left:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
+    .logo { font-size:28px; font-weight:700; color:#1b5e20; letter-spacing:1px; }
+    nav ul { list-style:none; display:flex; gap:25px; }
+    nav ul li a { text-decoration:none; color:#1b5e20; font-weight:600; transition:0.3s; }
+    nav ul li a:hover { color:#33691e; transform:scale(1.1); }
+
+    section { padding:120px 10% 80px; min-height:100vh; }
+
+    /* HOME */
+    #home { display:flex; align-items:center; justify-content:space-between; gap:40px; }
+    #home .home-text { flex:1; background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; animation:slideLeft 1.2s ease; }
+    #home h1 { font-size:48px; margin-bottom:20px; color:#1b5e20; }
+    #home p { font-size:18px; line-height:1.7; color:#2f4f2f; }
+    #home img { flex:1; max-width:450px; border-radius:12px; animation:slideRight 1.2s ease; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+
+    /* ABOUT US & WHY E-KISAN */
+    .section-box { background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; margin-bottom:30px; box-shadow:0 4px 15px rgba(0,0,0,0.08); animation:fadeInUp 1.2s ease; }
+    h2.section-title { font-size:36px; text-align:center; margin-bottom:25px; color:#2e7d32; }
+    #about p, #why p, #why ul li { font-size:18px; line-height:1.7; color:#2f4f2f; margin-bottom:10px; }
+    #why ul { list-style:none; padding-left:0; margin-top:15px; }
+    #why ul li { margin-bottom:10px; font-size:18px; }
+
+    /* FEATURES */
+    #features h2 { font-size:36px; text-align:center; margin-bottom:40px; color:#2e7d32; }
+    .feature-block { display:flex; align-items:flex-start; gap:30px; margin-bottom:40px; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); transition:0.3s; animation:fadeInUp 1.2s ease; background: linear-gradient(120deg,#a8e6a3,#81c784); }
+    .feature-block:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .feature-icon { font-size:50px; flex-shrink:0; }
+    .feature-text h3 { font-size:24px; margin-bottom:10px; color:#1b5e20; }
+    .feature-text p { font-size:16px; line-height:1.6; color:#1b5e20; }
+    .feature-text .benefit { font-weight:600; color:#145214; margin-top:5px; }
+    .feature-text .tip { font-style:italic; color:#145214; margin-top:3px; }
+
+    /* HOW IT WORKS */
+    #how h2 { font-size:36px; text-align:center; margin-bottom:40px; color:#2e7d32; }
+    .checkerboard { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+    .step-box { background: rgba(255,255,255,0.85); padding:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition:0.3s; animation:fadeInUp 1.2s ease; }
+    .step-box:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    .step-box h3 { font-size:22px; margin-bottom:10px; color:#1b5e20; }
+    .step-box p { font-size:16px; line-height:1.6; color:#2f4f2f; }
+
+    /* FUTURE SCOPE */
+    #future h2 { font-size:36px; text-align:center; margin-bottom:40px; color:#2e7d32; }
+    .timeline { position: relative; margin-left:20px; }
+    .timeline::before { content:''; position:absolute; left:20px; top:0; width:4px; height:100%; background:#81c784; border-radius:2px; }
+    .timeline-item { position:relative; margin-bottom:50px; padding-left:60px; animation:fadeInLeft 1.2s ease; }
+    .timeline-item:nth-child(even) { padding-left:40px; padding-right:60px; animation:fadeInRight 1.2s ease;}
+    .timeline-item .icon { position:absolute; left:0; top:0; width:40px; height:40px; background:#a8e6a3; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; color:#1b5e20; transition:0.3s; }
+    .timeline-item:hover .icon { transform:scale(1.2); background:#81c784; }
+    .timeline-item h3 { font-size:20px; margin-bottom:5px; color:#1b5e20; }
+    .timeline-item p { font-size:16px; line-height:1.6; color:#2f4f2f; }
+
+    /* CONTACT */
+    #contact h2 { font-size:36px; text-align:center; margin-bottom:30px; color:#2e7d32; }
+    .contact-card { background: rgba(255,255,255,0.85); padding:30px; border-radius:12px; max-width:500px; margin:0 auto; text-align:center; box-shadow:0 6px 20px rgba(0,0,0,0.1); animation:fadeInUp 1.2s ease; }
+    .contact-card p { font-size:18px; line-height:1.8; color:#2f4f2f; margin-bottom:10px; }
+
+    footer { background:#a8e6a3; text-align:center; padding:20px 0; margin-top:50px; color:#1b5e20; font-weight:500; }
+
+    /* ANIMATIONS */
+    @keyframes slideLeft { from{opacity:0; transform:translateX(-50px);} to{opacity:1; transform:translateX(0);} }
+    @keyframes slideRight { from{opacity:0; transform:translateX(50px);} to{opacity:1; transform:translateX(0);} }
+    @keyframes fadeInUp { from{opacity:0; transform:translateY(40px);} to{opacity:1; transform:translateY(0);} }
+    @keyframes fadeInLeft { from{opacity:0; transform:translateX(-50px);} to{opacity:1; transform:translateX(0);} }
+    @keyframes fadeInRight { from{opacity:0; transform:translateX(50px);} to{opacity:1; transform:translateX(0);} }
+
+    @media(max-width:768px){
+      #home{flex-direction:column;text-align:center;}#home img{max-width:80%;margin-top:20px;}
+      .feature-block{flex-direction:column;text-align:center;}
+      .checkerboard{grid-template-columns:1fr;}
+      .timeline-item{padding-left:60px;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">E-Kisan</div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#why">Why E-Kisan</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#future">Future Scope</a></li>
+      
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home">
+  <div class="home-text">
+    <h1>Welcome to E-Kisan 🌾</h1>
+    <p>“Empowering fields 🌾, enriching lives 🌱 — E-Kisan 🚜 thrives where progress drives 💧
+  </div>
+  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80" alt="E-Kisan Image">
+</section>
+
+<!-- ABOUT US -->
+<section id="about">
+  <h2 class="section-title">About Us 🌾</h2>
+  <div class="section-box">
+    <p>E-Kisan is a revolutionary smart agriculture platform created to empower farmers with cutting-edge technology. By seamlessly integrating IoT sensors, automation systems, and real-time monitoring, it optimizes every stage of farming — from ploughing and sowing to irrigation and plant health management. With intelligent data-driven insights and timely alerts, E-Kisan helps farmers reduce manual labor, prevent crop loss, conserve water and other resources, and adopt sustainable practices. This innovative platform not only enhances productivity and efficiency but also ensures healthier crops, better yield, and long-term agricultural growth. With E-Kisan, the future of farming is smart, efficient, and sustainable. 🌱🚜💧🌞</p>
+  </div>
+</section>
+
+<!-- WHY E-KISAN -->
+<section id="why">
+  <h2 class="section-title">Why E-Kisan? 🤔</h2>
+  <div class="section-box">
+    <p>Farmers face challenges such as unpredictable weather, labor-intensive tasks, water wastage, and crop health issues. E-Kisan addresses these problems by offering smart, automated, and data-driven solutions:</p>
+    <ul>
+      <li>💧 Smart irrigation reduces water wastage and ensures proper hydration.</li>
+      <li>🚜 Automated ploughing and sowing saves time and labor.</li>
+      <li>🌿 Plant health monitoring detects stress and disease early.</li>
+      <li>📱 Real-time alerts and reports help farmers make informed decisions.</li>
+      <li>🌍 Promotes sustainable and efficient farming for better yield.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <h2>Features 🌱</h2>
+
+  <div class="feature-block">
+    <div class="feature-icon">🚜</div>
+    <div class="feature-text">
+      <h3>Automated Ploughing</h3>
+      <p>Smart motors and sensors control ploughing depth and direction automatically for optimal soil preparation.</p>
+      <p class="benefit">Benefit: Uniform soil, reduced labor, faster preparation.</p>
+      <p class="tip">Tip: Adjust ploughing depth for different crops.</p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-icon">🌱</div>
+    <div class="feature-text">
+      <h3>Precision Sowing</h3>
+      <p>Seeds are planted at accurate spacing and depth for better germination and crop density.</p>
+      <p class="benefit">Benefit: Improved yield, efficient seed use.</p>
+      <p class="tip">Tip: Adjust spacing for crop type.</p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-icon">💧</div>
+    <div class="feature-text">
+      <h3>Smart Irrigation</h3>
+      <p>Automated watering based on soil moisture sensors and weather data.</p>
+      <p class="benefit">Benefit: Reduces water wastage, ensures optimal crop hydration.</p>
+      <p class="tip">Tip: Monitor seasonal variations for best results.</p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-icon">☀️</div>
+    <div class="feature-text">
+      <h3>Weather Data Collection</h3>
+      <p>Monitors temperature, humidity, sunlight, and rainfall for data-driven decisions.</p>
+      <p class="benefit">Benefit: Optimized irrigation and harvesting timing.</p>
+      <p class="tip">Tip: Combine with historical trends for forecasts.</p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-icon">🌿</div>
+    <div class="feature-text">
+      <h3>Plant Health Detection</h3>
+      <p>Identifies disease and stress early using sensors and imaging technologies.</p>
+      <p class="benefit">Benefit: Prevents crop loss, enhances yield.</p>
+      <p class="tip">Tip: Check frequently in high-risk seasons.</p>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-icon">🧪</div>
+    <div class="feature-text">
+      <h3>Soil Moisture Monitoring</h3>
+      <p>Continuously tracks soil water content to prevent drought or overwatering.</p>
+      <p class="benefit">Benefit: Healthy crops and water efficiency.</p>
+      <p class="tip">Tip: Integrate with automated irrigation system.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How It Works ⚙️</h2>
+  <div class="checkerboard">
+    <div class="step-box">
+      <h3>1️⃣ Sensor Data Collection</h3>
+      <p>Collects soil moisture, temperature, and weather information in real-time. 🌡️💧</p>
+    </div>
+    <div class="step-box">
+      <h3>2️⃣ System Analysis</h3>
+      <p>Processes data to decide optimal ploughing, sowing, and irrigation schedules. 🤖</p>
+    </div>
+    <div class="step-box">
+      <h3>3️⃣ Automated Ploughing & Sowing</h3>
+      <p>Motors and machinery execute tasks precisely for efficiency. 🚜🌱</p>
+    </div>
+    <div class="step-box">
+      <h3>4️⃣ Plant Health Monitoring</h3>
+      <p>Uses sensors and imaging to detect early stress or disease. 🌿🔍</p>
+    </div>
+    <div class="step-box">
+      <h3>5️⃣ Alerts & Reports</h3>
+      <p>Farmers receive real-time updates on crop status and actions needed. 📱</p>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE SCOPE -->
+<section id="future">
+  <h2>Future Scope 🚀</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="icon">🤖</div>
+      <h3>AI-Driven Analytics</h3>
+      <p>Use AI to predict crop health, yields, and optimize farm management.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="icon">🚁</div>
+      <h3>Drone Monitoring</h3>
+      <p>Drones survey large farms to detect issues early and reduce manual inspections.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="icon">📱</div>
+      <h3>Mobile App Integration</h3>
+      <p>Farmers can remotely monitor and control operations via mobile applications.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="icon">🧭</div>
+      <h3>IoT Sensor Expansion</h3>
+      <p>More advanced sensors for soil nutrients, pest detection, and environmental monitoring.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="icon">🌍</div>
+      <h3>Global Expansion & Sustainability</h3>
+      <p>Implement E-Kisan solutions worldwide to promote sustainable smart farming.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us 📞</h2>
+  <div class="contact-card">
+    <p>📧 Email: contact@ekisan.org</p>
+    <p>📍 Location: New Delhi, India</p>
+    <p>📞 Phone: +91 9876543210</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 E-Kisan. All Rights Reserved.
+</footer>
+
+</body>
+</html>
